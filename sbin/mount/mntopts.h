@@ -67,6 +67,7 @@ union mntval {
 #define MOPT_GROUPQUOTA	{ "groupquota",	0, MFLAG_SET | MFLAG_STRVAL \
 					    | MFLAG_OPT }
 #define MOPT_SOFTDEP	{ "softdep",	MNT_SOFTDEP, MFLAG_SET }
+#define MOPT_AUTOMOUNTED	{ "automounted", MNT_AUTOMOUNTED, MFLAG_SET }
 
 /* Control flags. */
 #define MOPT_FORCE	{ "force",	MNT_FORCE, MFLAG_SET }
@@ -97,7 +98,8 @@ union mntval {
 	MOPT_NODEV,							\
 	MOPT_NOEXEC,							\
 	MOPT_NOSUID,							\
-	MOPT_RDONLY
+	MOPT_RDONLY,							\
+	MOPT_AUTOMOUNTED
 
 int getmntopts(const char *, const struct mntopt *, int *);
 int getmntopt(char **, union mntval *, const struct mntopt *, int *);

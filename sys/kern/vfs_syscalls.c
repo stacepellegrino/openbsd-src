@@ -252,10 +252,10 @@ update:
 		mp->mnt_flag |= MNT_WANTRDWR;
 	mp->mnt_flag &=~ (MNT_NOSUID | MNT_NOEXEC | MNT_WXALLOWED | MNT_NODEV |
 	    MNT_SYNCHRONOUS | MNT_ASYNC | MNT_SOFTDEP | MNT_NOATIME |
-	    MNT_NOPERM | MNT_FORCE);
+	    MNT_NOPERM | MNT_FORCE | MNT_AUTOMOUNTED);
 	mp->mnt_flag |= flags & (MNT_NOSUID | MNT_NOEXEC | MNT_WXALLOWED |
 	    MNT_NODEV | MNT_SYNCHRONOUS | MNT_ASYNC | MNT_SOFTDEP |
-	    MNT_NOATIME | MNT_NOPERM | MNT_FORCE);
+	    MNT_NOATIME | MNT_NOPERM | MNT_FORCE | MNT_AUTOMOUNTED);
 	/*
 	 * Mount the filesystem.
 	 */
@@ -311,6 +311,8 @@ update:
 		vfs_unbusy(vp->v_mount);
 		vput(vp);
 	}
+	if (!error)
+		KNOTE(&fs_klist, VQ_MOUNT);
 fail:
 	if (args)
 		free(args, M_TEMP, vfsp->vfc_datasize);
@@ -469,6 +471,8 @@ dounmount(struct mount *mp, int flags, struct proc *p)
 		if (error)
 			goto err;
 	}
+	if (!error)
+		KNOTE(&fs_klist, VQ_UNMOUNT);
 	return (0);
 
 err:

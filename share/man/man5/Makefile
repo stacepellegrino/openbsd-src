@@ -1,7 +1,7 @@
 #	$OpenBSD: Makefile,v 1.55 2017/02/07 11:37:23 tb Exp $
 #	$NetBSD: Makefile,v 1.14 1995/05/11 23:13:15 cgd Exp $
 
-MAN=	acct.5 ar.5 bsd.port.mk.5 bsd.port.arch.mk.5 bsd.regress.mk.5 \
+MAN=	acct.5 ar.5 autofs.5 bsd.port.mk.5 bsd.port.arch.mk.5 bsd.regress.mk.5 \
 	changelist.5 core.5 \
 	defaultdomain.5 dir.5 disktab.5 elf.5 ethers.5 fbtab.5 files.conf.5 \
 	fs.5 fstab.5 genassym.cf.5 group.5 hostname.if.5 hosts.5 installurl.5 \

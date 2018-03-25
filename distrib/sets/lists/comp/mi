@@ -898,6 +898,8 @@
 ./usr/include/miscfs/fuse
 ./usr/include/miscfs/fuse/fusefs.h
 ./usr/include/miscfs/fuse/fusefs_node.h
+./usr/include/miscfs/autofs/autofs.h
+./usr/include/miscfs/autofs/autofs_ioctl.h
 ./usr/include/msdosfs
 ./usr/include/msdosfs/bootsect.h
 ./usr/include/msdosfs/bpb.h

@@ -98,6 +98,9 @@ int	filt_timerattach(struct knote *kn);
 void	filt_timerdetach(struct knote *kn);
 int	filt_timer(struct knote *kn, long hint);
 void	filt_seltruedetach(struct knote *kn);
+int	filt_fsattach(struct knote *kn);
+void	filt_fsdetach(struct knote *kn);
+int	filt_fs(struct knote *kn, long hint);
 
 struct filterops kqread_filtops =
 	{ 1, NULL, filt_kqdetach, filt_kqueue };
@@ -107,6 +110,8 @@ struct filterops file_filtops =
 	{ 1, filt_fileattach, NULL, NULL };
 struct filterops timer_filtops =
         { 0, filt_timerattach, filt_timerdetach, filt_timer };
+struct filterops fs_filtops =
+	{ 0, filt_fsattach, filt_fsdetach, filt_fs, };
 
 struct	pool knote_pool;
 struct	pool kqueue_pool;
@@ -138,6 +143,7 @@ struct filterops *sysfilt_ops[] = {
 	&sig_filtops,			/* EVFILT_SIGNAL */
 	&timer_filtops,			/* EVFILT_TIMER */
 	&file_filtops,			/* EVFILT_DEVICE */
+	&fs_filtops,			/* EVFILT_FS */
 };
 
 void KQREF(struct kqueue *);
@@ -430,6 +436,37 @@ seltrue_kqfilter(dev_t dev, struct knote *kn)
 
 	/* Nothing more to do */
 	return (0);
+}
+
+/*
+ * Filter event method for EVFILT_FS.
+ */
+struct klist fs_klist = SLIST_HEAD_INITIALIZER(&fs_klist);
+
+int
+filt_fsattach(struct knote *kn)
+{
+	kn->kn_flags |= EV_CLEAR;
+	SLIST_INSERT_HEAD(&fs_klist, kn, kn_selnext);
+
+	return 0;
+}
+
+void
+filt_fsdetach(struct knote *kn)
+{
+	SLIST_REMOVE(&fs_klist, kn, knote, kn_selnext);
+}
+
+int
+filt_fs(struct knote *kn, long hint)
+{
+	int rv;
+
+	kn->kn_fflags |= hint;
+	rv = (kn->kn_fflags != 0);
+
+	return rv;
 }
 
 int

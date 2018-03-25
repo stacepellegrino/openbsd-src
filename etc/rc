@@ -583,7 +583,7 @@ if ifconfig lo0 inet6 >/dev/null 2>&1; then
 	fi
 fi
 
-start_daemon hostapd lpd smtpd slowcgi httpd ftpd
+start_daemon automountd autounmountd hostapd lpd smtpd slowcgi httpd ftpd
 start_daemon ftpproxy ftpproxy6 tftpd tftpproxy identd inetd rarpd bootparamd
 start_daemon rbootd mopd vmd spamd spamlogd sndiod
 echo '.'

@@ -465,6 +465,9 @@ A device change event has occurred, e.g. an HDMI cable has been plugged in to a 
 On return,
 .Va fflags
 contains the events which triggered the filter.
+.It Dv EVFILT_FS
+Establishes a file system monitor.
+Currently it only monitors file system mount and unmount actions.
 .El
 .Sh RETURN VALUES
 .Fn kqueue

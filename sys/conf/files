@@ -571,6 +571,11 @@ file	miscfs/fuse/fuse_vfsops.c	fuse
 file	miscfs/fuse/fuse_vnops.c	fuse
 file	miscfs/fuse/fusebuf.c		fuse
 
+pseudo-device autofs
+file	miscfs/autofs/autofs.c		autofs	needs-flag
+file	miscfs/autofs/autofs_vfsops.c	autofs
+file	miscfs/autofs/autofs_vnops.c	autofs
+
 pseudo-device pf: ifnet
 file	net/pf.c			pf	needs-flag
 file	net/pf_norm.c			pf

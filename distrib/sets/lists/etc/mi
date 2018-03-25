@@ -1,6 +1,14 @@
 ./.cshrc
 ./.profile
 ./etc/acme-client.conf
+./etc/auto_master
+./etc/autofs/include_ldap
+./etc/autofs/include_nis
+./etc/autofs/include_nis_nullfs
+./etc/autofs/special_hosts
+./etc/autofs/special_media
+./etc/autofs/special_noauto
+./etc/autofs/special_null
 ./etc/changelist
 ./etc/dumpdates
 ./etc/fbtab

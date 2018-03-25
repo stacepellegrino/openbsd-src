@@ -39,8 +39,9 @@
 #define EVFILT_SIGNAL		(-6)	/* attached to struct process */
 #define EVFILT_TIMER		(-7)	/* timers */
 #define EVFILT_DEVICE		(-8)	/* devices */
+#define EVFILT_FS		(-9)	/* filesystem events */
 
-#define EVFILT_SYSCOUNT		8
+#define EVFILT_SYSCOUNT		9
 
 #define EV_SET(kevp_, a, b, c, d, e, f) do {	\
 	struct kevent *kevp = (kevp_);		\
@@ -191,6 +192,8 @@ extern int	kqueue_register(struct kqueue *kq,
 extern int	filt_seltrue(struct knote *kn, long hint);
 extern int	seltrue_kqfilter(dev_t, struct knote *);
 extern void	klist_invalidate(struct klist *);
+
+extern struct	klist fs_klist;	/* EVFILT_FS */
 
 #else	/* !_KERNEL */
 

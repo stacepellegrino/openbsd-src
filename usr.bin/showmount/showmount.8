@@ -33,7 +33,7 @@
 .\"
 .\"     @(#)showmount.8	8.3 (Berkeley) 3/29/95
 .\"
-.Dd $Mdocdate: May 31 2007 $
+.Dd $Mdocdate: March 16 2018 $
 .Dt SHOWMOUNT 8
 .Os
 .Sh NAME
@@ -41,7 +41,7 @@
 .Nd show remote NFS mounts on host
 .Sh SYNOPSIS
 .Nm showmount
-.Op Fl 3ade
+.Op Fl 3adeE
 .Op Ar host
 .Sh DESCRIPTION
 .Nm
@@ -73,6 +73,12 @@ List directory paths of mount points instead of hosts.
 Show the
 .Ar host Ns 's
 exports list.
+.It Fl E
+Show the
+.Ar host Ns 's
+exports list in a script-friendly format.
+Client addresses and the header are not shown, and special
+characters are escaped.
 .El
 .Sh SEE ALSO
 .Xr mount 8 ,

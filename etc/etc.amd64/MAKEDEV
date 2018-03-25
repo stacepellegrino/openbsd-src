@@ -74,6 +74,7 @@
 #	drm*	Direct Rendering Manager
 #	fd	fd/* nodes
 #	fuse	Userland Filesystem
+#	autofs	Automounter Filesystem
 #	gpio*	General Purpose Input/Output
 #	gpr*	GPR400 smartcard reader
 #	hotplug	devices hot plugging
@@ -340,6 +341,10 @@ gpio*)
 	M gpio$U c 88 $U 600
 	;;
 
+autofs)
+	M autofs c 98 $U 600
+	;;
+
 fuse)
 	M fuse$U c 92 $U 600
 	;;
@@ -568,8 +573,8 @@ all)
 	R sd5 sd6 sd7 sd8 sd9 cd0 cd1 rd0 tap0 tap1 tap2 tap3 tun0
 	R tun1 tun2 tun3 bio pty0 fd1 fd1B fd1C fd1D fd1E fd1F fd1G
 	R fd1H fd0 fd0B fd0C fd0D fd0E fd0F fd0G fd0H diskmap vscsi0
-	R ch0 audio0 audio1 audio2 bpf pvbus0 pvbus1 vmm fuse pppx
-	R hotplug ptm gpr0 local wscons pci0 pci1 pci2 pci3 uall
+	R ch0 audio0 audio1 audio2 bpf pvbus0 pvbus1 vmm autofs fuse
+	R pppx hotplug ptm gpr0 local wscons pci0 pci1 pci2 pci3 uall
 	R rmidi0 rmidi1 rmidi2 rmidi3 rmidi4 rmidi5 rmidi6 rmidi7
 	R tuner0 radio0 speaker video0 video1 uk0 random lpa0 lpa1
 	R lpa2 lpt0 lpt1 lpt2 tty00 tty01 tty02 tty03 tty04 tty05

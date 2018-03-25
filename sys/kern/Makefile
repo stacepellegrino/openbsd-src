@@ -36,7 +36,7 @@ DGEN=	conf \
 	kern \
 	lib/libkern lib/libkern/arch/${MACHINE} \
 	lib/libkern/arch/${MACHINE_ARCH} \
-	miscfs miscfs/deadfs miscfs/fifofs \
+	miscfs miscfs/deadfs miscfs/fifofs miscfs/autofs \
 	msdosfs \
 	net netinet netmpls \
 	nfs \

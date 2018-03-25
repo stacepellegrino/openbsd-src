@@ -56,6 +56,7 @@
 
 #define	DODUMP		0x1
 #define	DOEXPORTS	0x2
+#define	DOPARSABLEEXPORTS	0x4
 
 struct mountlist {
 	struct mountlist *ml_left;
@@ -108,7 +109,7 @@ main(int argc, char *argv[])
 	if (pledge("stdio rpath inet dns", NULL) == -1)
 		err(1, "pledge");
 
-	while ((ch = getopt(argc, argv, "ade3")) != -1)
+	while ((ch = getopt(argc, argv, "adeE3")) != -1)
 		switch (ch) {
 		case 'a':
 			if (type == 0) {
@@ -127,6 +128,9 @@ main(int argc, char *argv[])
 		case 'e':
 			rpcs |= DOEXPORTS;
 			break;
+		case 'E':
+			rpcs |= DOPARSABLEEXPORTS;
+			break;
 		case '3':
 			mntvers = 3;
 			break;
@@ -135,6 +139,13 @@ main(int argc, char *argv[])
 		}
 	argc -= optind;
 	argv += optind;
+
+	if ((rpcs & DOPARSABLEEXPORTS) != 0) {
+		if ((rpcs & DOEXPORTS) != 0)
+			errx(1, "-E cannot be used with -e");
+		if ((rpcs & DODUMP) != 0)
+			errx(1, "-E cannot be used with -a or -d");
+	}
 
 	if (argc > 0)
 		host = *argv;
@@ -173,7 +184,7 @@ main(int argc, char *argv[])
 			exit(1);
 		}
 	}
-	if (rpcs & DOEXPORTS) {
+	if (rpcs & (DOEXPORTS | DOPARSABLEEXPORTS)) {
 		estat = clnt_call(client, RPCMNT_EXPORT, xdr_void, NULL,
 		    xdr_exports, (char *)&exports, timeout);
 		if (estat != RPC_SUCCESS) {
@@ -223,6 +234,18 @@ main(int argc, char *argv[])
 		}
 	}
 
+	if (rpcs & DOPARSABLEEXPORTS) {
+		exp = exports;
+		while (exp) {
+			char strvised[1024 * 4 + 1];
+			int nbytes = strnvis(strvised, exp->ex_dirp,
+			    sizeof(strvised), VIS_GLOB | VIS_NL);
+			if (nbytes == -1)
+				err(1, "strsnvis");
+			printf("%s\n", strvised);
+			exp = exp->ex_next;
+		}
+	}
 	exit(0);
 }
 

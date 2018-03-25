@@ -249,6 +249,15 @@ struct fusefs_args {
 };
 
 /*
+ * Arguments to mount autofs file systems
+ */
+struct autofs_args {
+	const char	*from;
+	const char	*master_options;
+	const char	*master_prefix;
+};
+
+/*
  * file system statistics
  */
 
@@ -316,6 +325,7 @@ struct statfs {
 #define	MOUNT_UDF	"udf"		/* UDF */
 #define	MOUNT_TMPFS	"tmpfs"		/* tmpfs */
 #define	MOUNT_FUSEFS	"fuse"		/* FUSE */
+#define	MOUNT_AUTOFS	"autofs"	/* Automounter Filesystem */
 
 /*
  * Structure per mounted file system.  Each mounted file system has an
@@ -375,7 +385,7 @@ struct mount {
 /*
  * Mask of flags that are visible to statfs()
  */
-#define	MNT_VISFLAGMASK	0x0400ffff
+#define	MNT_VISFLAGMASK	0x1400ffff
 
 #define	MNT_BITS \
     "\20\001RDONLY\002SYNCHRONOUS\003NOEXEC\004NOSUID\005NODEV\006NOPERM" \
@@ -393,6 +403,7 @@ struct mount {
 #define MNT_WANTRDWR	0x02000000	/* want upgrade to read/write */
 #define MNT_SOFTDEP     0x04000000      /* soft dependencies being done */
 #define MNT_DOOMED	0x08000000	/* device behind filesystem is gone */
+#define	MNT_AUTOMOUNTED	0x10000000	/* mounted by automountd(8) */
 
 /*
  * Flags for various system call interfaces.
@@ -472,6 +483,11 @@ struct bcachestats {
 	int64_t highflops;		/* total failed flips to above DMA */
 	int64_t dmaflips;		/* total flips from high to DMA */
 };
+
+/* vfsquery flags for kqueue(2) */
+#define VQ_MOUNT	0x0001	/* new filesystem arrived */
+#define VQ_UNMOUNT	0x0002	/* filesystem has left */
+
 #ifdef _KERNEL
 extern struct bcachestats bcstats;
 extern long buflowpages, bufhighpages, bufbackpages;

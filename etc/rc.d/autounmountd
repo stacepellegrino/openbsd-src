@@ -1,0 +1,11 @@
+#!/bin/ksh
+
+daemon="/usr/sbin/autounmountd"
+
+. /etc/rc.d/rc.subr
+
+rc_post() {
+	rm -f /var/run/autounmountd.pid
+}
+
+rc_cmd $1

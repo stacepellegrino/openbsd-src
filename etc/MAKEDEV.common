@@ -164,6 +164,7 @@ target(all, ptm)dnl
 target(all, hotplug)dnl
 target(all, pppx)dnl
 target(all, fuse)dnl
+target(all, autofs)dnl
 target(all, vmm)dnl
 target(all, pvbus, 0, 1)dnl
 target(all, bpf)dnl
@@ -199,6 +200,8 @@ __devitem(cd, {-cd*-}, ATAPI and SCSI CD-ROM drives)dnl
 _mkdev(cd, cd*, {-dodisk2 cd $U major_cd_b major_cd_c $U 0{--}ifstep(cd)-})dnl
 __devitem(fuse, fuse, Userland Filesystem, fuse 4)dnl
 _mcdev(fuse, fuse, fuse, {-major_fuse_c-}, 600)dnl
+__devitem(autofs, autofs, Automounter Filesystem, autofs 5)dnl
+_mkdev(autofs, autofs, {-M autofs c major_autofs_c $U 600-})dnl
 __devitem(ch, {-ch*-}, SCSI media changers)dnl
 _mcdev(ch, ch*, ch, {-major_ch_c-}, 660, operator)dnl
 __devitem(uk, uk*, Unknown SCSI devices)dnl

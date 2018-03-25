@@ -1916,6 +1916,8 @@
 ./usr/share/man/man5/acme-client.conf.5
 ./usr/share/man/man5/aliases.5
 ./usr/share/man/man5/ar.5
+./usr/share/man/man5/autofs.5
+./usr/share/man/man5/auto_master.5
 ./usr/share/man/man5/bgpd.conf.5
 ./usr/share/man/man5/bootparams.5
 ./usr/share/man/man5/bsd.port.arch.mk.5
@@ -2094,6 +2096,9 @@
 ./usr/share/man/man8/atactl.8
 ./usr/share/man/man8/authpf.8
 ./usr/share/man/man8/autoinstall.8
+./usr/share/man/man8/automount.8
+./usr/share/man/man8/automountd.8
+./usr/share/man/man8/autounmountd.8
 ./usr/share/man/man8/badsect.8
 ./usr/share/man/man8/bgpctl.8
 ./usr/share/man/man8/bgpd.8
@@ -2135,6 +2140,7 @@
 ./usr/share/man/man8/fsck_msdos.8
 ./usr/share/man/man8/fsdb.8
 ./usr/share/man/man8/fsirand.8
+./usr/share/man/man8/fstyp.8
 ./usr/share/man/man8/ftp-proxy.8
 ./usr/share/man/man8/ftpd.8
 ./usr/share/man/man8/genassym.sh.8

@@ -16,6 +16,8 @@ etc
     ..
     authpf			uname=root mode=0755
     ..
+    autofs
+    ..
     examples
     ..
     firmware

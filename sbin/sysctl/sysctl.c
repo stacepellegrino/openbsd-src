@@ -87,6 +87,7 @@
 #include <ufs/ffs/ffs_extern.h>
 
 #include <miscfs/fuse/fusefs.h>
+#include <miscfs/autofs/autofs.h>
 
 #include <nfs/nfsproto.h>
 #include <nfs/nfs.h>
@@ -1174,6 +1175,7 @@ struct ctlname vfsgennames[] = CTL_VFSGENCTL_NAMES;
 struct ctlname ffsname[] = FFS_NAMES;
 struct ctlname nfsname[] = FS_NFS_NAMES;
 struct ctlname fusefsname[] = FUSEFS_NAMES;
+struct ctlname autofsname[] = AUTOFS_NAMES;
 struct list *vfsvars;
 int *vfs_typenums;
 
@@ -1235,6 +1237,10 @@ vfsinit(void)
 		if (!strcmp(vfc.vfc_name, MOUNT_FUSEFS)) {
 			vfsvars[cnt].list = fusefsname;
 			vfsvars[cnt].size = FUSEFS_MAXID;
+		}
+		if (!strcmp(vfc.vfc_name, MOUNT_AUTOFS)) {
+			vfsvars[cnt].list = autofsname;
+			vfsvars[cnt].size = AUTOFS_MAXID;
 		}
 		vfs_typenums[cnt] = vfc.vfc_typenum;
 		strlcat(&names[loc], vfc.vfc_name, sizeof names - loc);

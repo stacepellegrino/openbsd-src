@@ -48,6 +48,15 @@
 ./etc/amd
 ./etc/amd/master.sample
 ./etc/authpf
+./etc/autofs
+./etc/autofs/include_ldap
+./etc/autofs/include_nis
+./etc/autofs/include_nis_nullfs
+./etc/autofs/special_hosts
+./etc/autofs/special_media
+./etc/autofs/special_noauto
+./etc/autofs/special_null
+./etc/auto_master
 ./etc/daily
 ./etc/disktab
 ./etc/examples
@@ -138,6 +147,8 @@
 ./etc/rc.d
 ./etc/rc.d/amd
 ./etc/rc.d/apmd
+./etc/rc.d/automountd
+./etc/rc.d/autounmountd
 ./etc/rc.d/bgpd
 ./etc/rc.d/bootparamd
 ./etc/rc.d/cron
@@ -2354,6 +2365,9 @@
 ./usr/sbin/arp
 ./usr/sbin/authpf
 ./usr/sbin/authpf-noip
+./usr/sbin/automount
+./usr/sbin/automountd
+./usr/sbin/autounmountd
 ./usr/sbin/bgpctl
 ./usr/sbin/bgpd
 ./usr/sbin/chat
@@ -2375,6 +2389,7 @@
 ./usr/sbin/edquota
 ./usr/sbin/eigrpctl
 ./usr/sbin/eigrpd
+./usr/sbin/fstyp
 ./usr/sbin/ftp-proxy
 ./usr/sbin/fw_update
 ./usr/sbin/group

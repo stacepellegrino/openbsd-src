@@ -89,6 +89,10 @@ extern const struct vfsops fusefs_vfsops;
 extern  const struct vfsops tmpfs_vfsops;
 #endif
 
+#ifdef AUTOFS
+extern  const struct vfsops autofs_vfsops;
+#endif
+
 /* Set up the filesystem operations for vnodes. */
 static struct vfsconf vfsconflist[] = {
 #ifdef FFS
@@ -139,6 +143,11 @@ static struct vfsconf vfsconflist[] = {
 #ifdef TMPFS
 	{ &tmpfs_vfsops, MOUNT_TMPFS, 19, 0, MNT_LOCAL, NULL,
 	    sizeof(struct tmpfs_args) },
+#endif
+
+#ifdef AUTOFS
+	{ &autofs_vfsops, MOUNT_AUTOFS, 20, 0, MNT_LOCAL, NULL,
+	    sizeof(struct autofs_args) },
 #endif
 };
 
