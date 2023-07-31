@@ -502,6 +502,13 @@ extern struct cdevsw cdevsw[];
 	(dev_type_stop((*))) enodev, 0, \
 	(dev_type_mmap((*))) enodev, 0, D_CLONE }
 
+/* open, close, ioctl */
+#define cdev_autofs_init(c,n) { \
+	dev_init(c,n,open), dev_init(c,n,close), (dev_type_read((*))) enodev, \
+	(dev_type_write((*))) enodev, dev_init(c,n,ioctl), \
+	(dev_type_stop((*))) enodev, 0, selfalse, \
+	(dev_type_mmap((*))) enodev }
+
 #endif
 
 /*
@@ -641,6 +648,7 @@ cdev_decl(pvbus);
 cdev_decl(ipmi);
 cdev_decl(efi);
 cdev_decl(kcov);
+cdev_decl(autofs);
 
 #endif
 

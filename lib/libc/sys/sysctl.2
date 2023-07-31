@@ -2210,6 +2210,30 @@ The number of pages used for fusebuf memory.
 .It Dv FUSEFS_WAITFBUFS Pq Va vfs.fuse.fusefs_fbufs_wait
 The number of fusebufs waiting for a response.
 .El
+.It AUTOFS
+.Bl -column "AUTOFS_RETRY_ATTEMPTS" "Type" "Changeable" -offset indent
+.It Sy "Third level name" Ta Sy "Type" Ta Sy "Changeable"
+.It Dv AUTOFS_DEBUG_TUNABLE Ta "int" Ta "yes"
+.It Dv AUTOFS_MOUNT_ON_STAT Ta "int" Ta "yes"
+.It Dv AUTOFS_TIMEOUT Ta "int" Ta "yes"
+.It Dv AUTOFS_CACHE Ta "int" Ta "yes"
+.It Dv AUTOFS_RETRY_ATTEMPTS Ta "int" Ta "yes"
+.It Dv AUTOFS_RETRY_DELAY Ta "int" Ta "yes"
+.El
+.Bl -tag -width Ds
+.It Dv AUTOFS_DEBUG_TUNABLE Pq Va vfs.autofs.autofs_debug_tunable
+Enable debug messages.
+.It Dv AUTOFS_MOUNT_ON_STAT Pq Va vfs.autofs.autofs_mount_on_stat
+Trigger mount on stat(2) on mountpoint.
+.It Dv AUTOFS_TIMEOUT Pq Va vfs.autofs.autofs_timeout
+The number of seconds to wait for automountd(8).
+.It Dv AUTOFS_CACHE Pq Va vfs.autofs.autofs_cache
+The number of seconds to wait before reinvoking.
+.It Dv AUTOFS_RETRY_ATTEMPTS Pq Va vfs.autofs.autofs_retry_attempts
+The number of attempts before failing mount.
+.It Dv AUTOFS_RETRY_DELAY Pq Va vfs.autofs.autofs_retry_delay
+The number of seconds before retrying.
+.El
 .El
 .El
 .Ss CTL_VM

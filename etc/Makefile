@@ -58,13 +58,13 @@ EXAMPLES_600=bgpd.conf doas.conf dvmrpd.conf eigrpd.conf hostapd.conf \
 	snmpd.conf vm.conf ypldap.conf
 
 # -r-xr-xr-x
-RCDAEMONS=amd apmd bgpd bgplgd bootparamd cron dhcpd dhcpleased dhcrelay \
+RCDAEMONS=amd apmd automountd autounmountd bgpd bgplgd bootparamd cron dhcpd dhcrelay \
 	dhcrelay6 dvmrpd eigrpd ftpd ftpproxy ftpproxy6 hostapd hotplugd \
 	httpd identd ifstated iked inetd isakmpd iscsid ldapd ldattach ldomd \
 	ldpd lockd lpd mopd mountd mrouted nfsd npppd nsd ntpd ospf6d ospfd \
-	pflogd portmap rad radiusd rarpd rbootd relayd resolvd ripd route6d \
-	sasyncd sensorsd slowcgi slaacd smtpd sndiod snmpd spamd \
-	spamlogd sshd statd syslogd tftpd tftpproxy unbound \
+	pflogd portmap rad radiusd rarpd rbootd rebound relayd resolvd ripd route6d \
+	rtadvd sasyncd sensorsd slowcgi slaacd smtpd sndiod snmpd spamd \
+	spamlogd sshd statd switchd syslogd tftpd tftpproxy unbound \
 	unwind vmd watchdogd wsmoused xenodm ypbind ypldap ypserv
 
 MISETS=	base${OSrev}.tgz comp${OSrev}.tgz man${OSrev}.tgz game${OSrev}.tgz
@@ -107,6 +107,7 @@ distribution-etc-root-var: distrib-dirs
 	${INSTALL} -c -o root -g wheel -m 644 unbound.conf ${DESTDIR}/var/unbound/etc
 	${INSTALL} -c -o ${BINOWN} -g ${BINGRP} -m 555 \
 	    etc.${MACHINE}/MAKEDEV ${DESTDIR}/dev
+	${INSTALL} -c -o root -g wheel -m 644 auto_master ${DESTDIR}/etc
 	cd root; \
 		${INSTALL} -c -o root -g wheel -m 644 dot.cshrc \
 		    ${DESTDIR}/root/.cshrc; \
@@ -143,6 +144,21 @@ distribution-etc-root-var: distrib-dirs
 	cd amd; \
 		${INSTALL} -c -o root -g wheel -m 644 master.sample \
 		    ${DESTDIR}/etc/amd
+	cd autofs; \
+		${INSTALL} -c -o root -g wheel -m 755 include_ldap \
+		    ${DESTDIR}/etc/autofs/; \
+		${INSTALL} -c -o root -g wheel -m 755 include_nis \
+		    ${DESTDIR}/etc/autofs/; \
+		${INSTALL} -c -o root -g wheel -m 755 include_nis_nullfs \
+		    ${DESTDIR}/etc/autofs/; \
+		${INSTALL} -c -o root -g wheel -m 755 special_hosts \
+		    ${DESTDIR}/etc/autofs/; \
+		${INSTALL} -c -o root -g wheel -m 755 special_media \
+		    ${DESTDIR}/etc/autofs/; \
+		${INSTALL} -c -o root -g wheel -m 755 special_noauto \
+		    ${DESTDIR}/etc/autofs/; \
+		${INSTALL} -c -o root -g wheel -m 755 special_null \
+		    ${DESTDIR}/etc/autofs/
 	cd ppp; \
 		${INSTALL} -c -o root -g wheel -m 600 chap-secrets \
 		    ${DESTDIR}/etc/ppp; \

@@ -49,6 +49,50 @@ struct pool namei_pool;
 /* This defines the root filesystem. */
 struct vnode *rootvnode;
 
+#ifdef FFS
+extern	const struct vfsops ffs_vfsops;
+#endif
+
+#ifdef MFS
+extern	const struct vfsops mfs_vfsops;
+#endif
+
+#ifdef MSDOSFS
+extern	const struct vfsops msdosfs_vfsops;
+#endif
+
+#ifdef NFSCLIENT
+extern	const struct vfsops nfs_vfsops;
+#endif
+
+#ifdef CD9660
+extern	const struct vfsops cd9660_vfsops;
+#endif
+
+#ifdef EXT2FS
+extern	const struct vfsops ext2fs_vfsops;
+#endif
+
+#ifdef NTFS
+extern  const struct vfsops ntfs_vfsops;
+#endif
+
+#ifdef UDF
+extern  const struct vfsops udf_vfsops;
+#endif
+
+#ifdef FUSE
+extern const struct vfsops fusefs_vfsops;
+#endif
+
+#ifdef TMPFS
+extern  const struct vfsops tmpfs_vfsops;
+#endif
+
+#ifdef AUTOFS
+extern  const struct vfsops autofs_vfsops;
+#endif
+
 /* Set up the filesystem operations for vnodes. */
 static struct vfsconf vfsconflist[] = {
 #ifdef FFS
@@ -99,6 +143,11 @@ static struct vfsconf vfsconflist[] = {
 #ifdef TMPFS
 	{ &tmpfs_vfsops, MOUNT_TMPFS, 19, 0, MNT_LOCAL,
 	    sizeof(struct tmpfs_args) },
+#endif
+
+#ifdef AUTOFS
+	{ &autofs_vfsops, MOUNT_AUTOFS, 20, 0, MNT_LOCAL,
+	    sizeof(struct autofs_args) },
 #endif
 };
 

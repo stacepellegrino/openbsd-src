@@ -40,6 +40,7 @@
 #define EVFILT_TIMER		(-7)	/* timers */
 #define EVFILT_DEVICE		(-8)	/* devices */
 #define EVFILT_EXCEPT		(-9)	/* exceptional conditions */
+#define EVFILT_FS		(-10)	/* filesystem events */
 
 #define EVFILT_SYSCOUNT		9
 
@@ -354,6 +355,23 @@ klist_empty(struct klist *klist)
 {
 	return (SLIST_EMPTY(&klist->kl_list));
 }
+
+extern struct klist fs_klist;	/* EVFILT_FS */
+
+/*
+SLIST_ENTRY(&fs_klist);
+SLIST_HEAD(head, &fs_klist);
+
+SLIST_ENTRY(klist);
+SLIST_HEAD(head, klist);
+*/
+
+////SLIST_ENTRY(TYPE);
+////SLIST_HEAD(HEADNAME, TYPE);
+//SLIST_HEAD SLIST_HEAD_INITIALIZER(SLIST_HEAD head);
+////int SLIST_HEAD_INITIALIZER(SLIST_HEAD head);
+////void SLIST_INIT(SLIST_HEAD *head);
+
 
 #else	/* !_KERNEL */
 
