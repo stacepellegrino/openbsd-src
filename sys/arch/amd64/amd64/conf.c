@@ -287,9 +287,13 @@ struct cdevsw	cdevsw[] =
 	cdev_pvbus_init(NPVBUS,pvbus),	/* 95: pvbus(4) control interface */
 	cdev_ipmi_init(NIPMI,ipmi),	/* 96: ipmi */
 	cdev_notdef(),			/* 97: was switch(4) */
-	cdev_fido_init(NFIDO,fido),	/* 98: FIDO/U2F security keys */
-	cdev_pppx_init(NPPPX,pppac),	/* 99: PPP Access Concentrator */
-	cdev_ujoy_init(NUJOY,ujoy),	/* 100: USB joystick/gamecontroller */
+	cdev_autofs_init(VT_AUTOFS,autofs),	/* 98: autofs */
+	//cdev_autofs_init(NAUTOFS,autofs),	/* 98: autofs */
+	cdev_notdef(),			/* 99: PPP Access Concentrator */
+	cdev_notdef(),			/* 100 : USB joystick/gamecontroller */
+	//cdev_fido_init(NFIDO,fido),	/* 98: FIDO/U2F security keys */
+	//cdev_pppx_init(NPPPX,pppac),	/* 99: PPP Access Concentrator */
+	//cdev_ujoy_init(NUJOY,ujoy),	/* 100: USB joystick/gamecontroller */
 };
 int	nchrdev = nitems(cdevsw);
 
